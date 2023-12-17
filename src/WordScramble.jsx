@@ -52,9 +52,11 @@ const WordScramble = ({ initialWord, targetWord, onComplete, show }) => {
 
   useEffect(() => {
     document.addEventListener('keydown', handleText);
+    document.addEventListener('mousedown', () => prompt())
 
     return () => {
       document.removeEventListener('keydown', handleText);
+      document.removeEventListener('mousedown', () => prompt())
     }
   }, [inputText])
 
