@@ -44,7 +44,7 @@ const BlockInput = ({ value, targetValue, onChange }) => {
 
   const handleChange = (e, index) => {
     console.log("e", e, e.target.value)
-    const val = e.target.value
+    const val = e.target.value.toLowerCase()
     if (value.length < targetValue.length && val.match(/[a-z]/i) && val.length === 1) {
       handleInputChange(index)
       onChange(value + val);
