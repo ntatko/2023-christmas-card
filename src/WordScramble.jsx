@@ -44,7 +44,7 @@ const BlockInput = ({ value, targetValue, onChange, success }) => {
   };
 
   const handleChange = (e, index) => {
-    console.log("e", e, e.target.value)
+    console.log("e from handleChange", e, e.target.value)
     const val = e.target.value.toLowerCase()
     if (value.length < targetValue.length && val.match(/[a-z]/i) && val.length === 1) {
       handleInputChange(index)
@@ -63,11 +63,14 @@ const BlockInput = ({ value, targetValue, onChange, success }) => {
           maxLength="1"
           value={value[index] || ''}
           onChange={(e) => {
+            console.log("e from change", e, index)
             !success && handleChange(e, index);
           }}
           onKeyDown={(e) => {
+            console.log("e from keydown", e, Math.min(value.length, targetValue.length - 1))
             if ((e.key === 'Backspace' || e.key === 'Delete') && !success) {
-              inputRefs.current[index].current.focus();
+              e.preventDefault();
+              inputRefs.current[Math.min(value.length, targetValue.length - 1)].current.focus();
               onChange(value.slice(0, -1));
             }
           }}
