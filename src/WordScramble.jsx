@@ -28,7 +28,7 @@ const EMPTY_TILE_STYLE = {
   ...TILE_STYLE,
   backgroundColor: '#111111',
   outline: 'none',
-  transition: 'all 0.2s ease-in-out',
+  transition: 'all 0.6s ease-in-out',
 };
 
 const BlockInput = ({ value, targetValue, onChange, success }) => {
@@ -69,8 +69,8 @@ const BlockInput = ({ value, targetValue, onChange, success }) => {
           onKeyDown={(e) => {
             console.log("e from keydown", e, Math.min(value.length, targetValue.length - 1))
             if ((e.key === 'Backspace' || e.key === 'Delete') && !success) {
-              e.preventDefault();
               inputRefs.current[Math.min(value.length, targetValue.length - 1)].current.focus();
+              e.preventDefault();
               onChange(value.slice(0, -1));
             }
           }}
@@ -116,7 +116,9 @@ const WordScramble = ({ initialWord, targetWord, onComplete, show }) => {
         ))}
       </div>
       <BlockInput success={showCheckmark} value={inputText} targetValue={targetWord} onChange={setInputText} />
-      <button onClick={() => setInputText('')}>Reset</button>
+      <button onClick={() => {
+        setInputText('')
+      }}>Reset</button>
       <button onClick={onComplete}>Skip</button></>)}
     </div>
   );
