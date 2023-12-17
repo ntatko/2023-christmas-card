@@ -16,8 +16,6 @@ function App() {
     localStorage.setItem('currentMonth', nextMonth)
   }
 
-  console.log(months, currentMonth, content[currentMonth])
-
   return (
     <>
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center'}}>

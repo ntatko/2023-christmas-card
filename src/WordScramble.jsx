@@ -44,7 +44,6 @@ const BlockInput = ({ value, targetValue, onChange }) => {
 
   const handleChange = (e, index) => {
     const val = e.key.toLowerCase();
-    console.log(e.key)
     if (e.key === 'Backspace' || e.key === 'Delete') {
       onChange(value.slice(0, -1));
       if (index > 0) {
@@ -95,8 +94,6 @@ const WordScramble = ({ initialWord, targetWord, onComplete, show }) => {
       setInputText('');
     }, 2500);
   }
-
-  console.log(initialWord, targetWord, inputText)
 
   return (
     <div>
