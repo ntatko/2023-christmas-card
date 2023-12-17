@@ -43,8 +43,11 @@ const BlockInput = ({ value, targetValue, onChange }) => {
   };
 
   const handleChange = (e, index) => {
-    const val = e.key.toLowerCase();
-    if (e.key === 'Backspace' || e.key === 'Delete') {
+    console.log("e", e)
+    const val = e.nativeEvent?.data?.toLowerCase();
+    const isBackspace = e.nativeEvent?.inputType === 'deleteContentBackward' ||
+      e.nativeEvent?.inputType === 'deleteContentForward';
+    if (isBackspace && value.length > 0) {
       onChange(value.slice(0, -1));
       if (index > 0) {
         inputRefs.current[index - 1].current.focus();
@@ -65,7 +68,7 @@ const BlockInput = ({ value, targetValue, onChange }) => {
           type="text"
           maxLength="1"
           value={value[index] || ''}
-          onKeyDown={(e) => {
+          onChange={(e) => {
             handleChange(e, index);
           }}
         />
