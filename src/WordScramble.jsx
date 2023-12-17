@@ -21,11 +21,13 @@ const TILE_STYLE = {
   MozUserSelect: 'none',
   MsUserSelect: 'none',
   userSelect: 'none',
+  caretColor: 'transparent',
 };
 
 const EMPTY_TILE_STYLE = {
   ...TILE_STYLE,
   backgroundColor: '#111111',
+  outline: 'none',
 };
 
 const BlockInput = ({ value, targetValue, onChange }) => {
@@ -41,14 +43,14 @@ const BlockInput = ({ value, targetValue, onChange }) => {
   };
 
   const handleChange = (e, index) => {
-    const val = e.key;
+    const val = e.key.toLowerCase();
     console.log(e.key)
     if (e.key === 'Backspace' || e.key === 'Delete') {
       onChange(value.slice(0, -1));
       if (index > 0) {
         inputRefs.current[index - 1].current.focus();
       }
-    } else if (value.length < targetValue.length) {
+    } else if (value.length < targetValue.length && val.match(/[a-z]/i) && val.length === 1) {
       handleInputChange(index)
       onChange(value + val);
     }

@@ -27,6 +27,7 @@ function App() {
           <p>Have fun with the scrambles, and Merry Christmas. (You can skip the scrambles if you don't like that kind of fun)</p>
         </div>
       </div>
+      {!showSolution && <div style={{ fontSize: 24, paddingBottom: 8 }}>{`For ${content[currentMonth].name}`}</div>}
       <WordScramble
         initialWord={content[currentMonth].clue}
         targetWord={content[currentMonth].word}
