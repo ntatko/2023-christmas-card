@@ -52,11 +52,9 @@ const WordScramble = ({ initialWord, targetWord, onComplete, show }) => {
 
   useEffect(() => {
     document.addEventListener('keydown', handleText);
-    document.addEventListener('mousedown', () => prompt())
 
     return () => {
       document.removeEventListener('keydown', handleText);
-      document.removeEventListener('mousedown', () => prompt())
     }
   }, [inputText])
 
@@ -66,6 +64,10 @@ const WordScramble = ({ initialWord, targetWord, onComplete, show }) => {
     } else if (event.key.length === 1 && inputText.length < targetWord.length) {
       setInputText(inputText + event.key);
     }
+  }
+
+  const focusDiv = (event) => {
+    event.target.focus();
   }
 
 
@@ -85,7 +87,7 @@ const WordScramble = ({ initialWord, targetWord, onComplete, show }) => {
         </div>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
           {targetWord.split('').map((letter, index) => (
-            <div key={index} style={EMPTY_TILE_STYLE}>
+            <div key={index} onClick={focusDiv} style={EMPTY_TILE_STYLE}>
               {inputText.split('')[index]}
             </div>
           ))}
