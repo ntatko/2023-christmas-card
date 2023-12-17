@@ -28,9 +28,10 @@ const EMPTY_TILE_STYLE = {
   ...TILE_STYLE,
   backgroundColor: '#111111',
   outline: 'none',
+  transition: 'all 0.2s ease-in-out',
 };
 
-const BlockInput = ({ value, targetValue, onChange }) => {
+const BlockInput = ({ value, targetValue, onChange, success }) => {
   // Create refs for each input
   const inputRefs = useRef([...Array(targetValue.length)].map(() => React.createRef()));
 
@@ -55,17 +56,17 @@ const BlockInput = ({ value, targetValue, onChange }) => {
     <div style={{ display: 'flex', gap: 4, justifyContent: 'center', paddingTop: 20}}>
       {targetValue.split('').map((char, index) => (
         <input
-          style={EMPTY_TILE_STYLE}
+          style={{...EMPTY_TILE_STYLE, ...(success ? {backgroundColor: '#003300'} : {}) }}
           key={index}
           ref={inputRefs.current[index]}
           type="text"
           maxLength="1"
           value={value[index] || ''}
           onChange={(e) => {
-            handleChange(e, index);
+            !success && handleChange(e, index);
           }}
           onKeyDown={(e) => {
-            if (e.key === 'Backspace' || e.key === 'Delete') {
+            if ((e.key === 'Backspace' || e.key === 'Delete') && !success) {
               inputRefs.current[index].current.focus();
               onChange(value.slice(0, -1));
             }
@@ -111,7 +112,7 @@ const WordScramble = ({ initialWord, targetWord, onComplete, show }) => {
           </div>
         ))}
       </div>
-      <BlockInput value={inputText} targetValue={targetWord} onChange={setInputText} />
+      <BlockInput success={showCheckmark} value={inputText} targetValue={targetWord} onChange={setInputText} />
       <button onClick={() => setInputText('')}>Reset</button>
       <button onClick={onComplete}>Skip</button></>)}
     </div>
