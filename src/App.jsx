@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import content, { months } from './assets/months'
 import WordScramble from './WordScramble'
+import MERRY_CHRISTMAS from './assets/merry_christmas.png'
 
 function App() {
   const [currentMonth, setCurrentMonth] = useState(localStorage.getItem('currentMonth') || months[0])
@@ -19,6 +20,13 @@ function App() {
 
   return (
     <>
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'center'}}>
+        <div style={{ width: '100%', maxWidth: '500px', padding: 12 }}>
+          <img style={{ width: '100%' }} src={MERRY_CHRISTMAS} />
+          <p>Merry Christmas! Instead of a christmas card (because we are never with it enough to make those), this year, we made some word scrambles for each month, and each scramble unlocks a monthly summary of sorts, so you can see our year in review.</p>
+          <p>Have fun with the scrambles, and Merry Christmas. (You can skip the scrambles if you don't like that kind of fun)</p>
+        </div>
+      </div>
       <WordScramble
         initialWord={content[currentMonth].clue}
         targetWord={content[currentMonth].word}

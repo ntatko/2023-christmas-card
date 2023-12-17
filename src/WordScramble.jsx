@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti'
 import useWindowSize from 'react-use/lib/useWindowSize'
 
@@ -8,12 +8,12 @@ const TILE_STYLE = {
   display: 'flex',
   border: '1px solid #ddd',
   borderRadius: '4px',
-  width: '40px',
-  height: '40px',
+  width: '30px',
+  height: '30px',
   textAlign: 'center',
   justifyContent: 'center',
   alignItems: 'center',
-  fontSize: '30px',
+  fontSize: '26px',
   // disable user-select
   WebkitTouchCallout: 'none',
   WebkitUserSelect: 'none',
@@ -26,6 +26,51 @@ const TILE_STYLE = {
 const EMPTY_TILE_STYLE = {
   ...TILE_STYLE,
   backgroundColor: '#111111',
+};
+
+const BlockInput = ({ value, targetValue, onChange }) => {
+  // Create refs for each input
+  const inputRefs = useRef([...Array(targetValue.length)].map(() => React.createRef()));
+
+  // Function to handle input change and focus on the next input
+  const handleInputChange = (index) => {
+    if (index < inputRefs.current.length - 1) {
+      // Move focus to the next input
+      inputRefs.current[index + 1].current.focus();
+    }
+  };
+
+  const handleChange = (e, index) => {
+    const val = e.key;
+    console.log(e.key)
+    if (e.key === 'Backspace' || e.key === 'Delete') {
+      onChange(value.slice(0, -1));
+      if (index > 0) {
+        inputRefs.current[index - 1].current.focus();
+      }
+    } else if (value.length < targetValue.length) {
+      handleInputChange(index)
+      onChange(value + val);
+    }
+  }
+
+  return (
+    <div style={{ display: 'flex', gap: 4, justifyContent: 'center', paddingTop: 20}}>
+      {targetValue.split('').map((char, index) => (
+        <input
+          style={EMPTY_TILE_STYLE}
+          key={index}
+          ref={inputRefs.current[index]}
+          type="text"
+          maxLength="1"
+          value={value[index] || ''}
+          onKeyDown={(e) => {
+            handleChange(e, index);
+          }}
+        />
+      ))}
+    </div>
+  );
 };
 
 const WordScramble = ({ initialWord, targetWord, onComplete, show }) => {
@@ -49,21 +94,7 @@ const WordScramble = ({ initialWord, targetWord, onComplete, show }) => {
     }, 2500);
   }
 
-  useEffect(() => {
-    document.addEventListener('keydown', handleText);
-
-    return () => {
-      document.removeEventListener('keydown', handleText);
-    }
-  }, [inputText])
-
-  const handleText = (event) => {
-    if (event.key === 'Backspace' || event.key === 'Delete') {
-      setInputText(inputText.slice(0, -1));
-    } else if (event.key.length === 1 && inputText.length < targetWord.length) {
-      setInputText(inputText + event.key);
-    }
-  }
+  console.log(initialWord, targetWord, inputText)
 
   return (
     <div>
@@ -72,23 +103,16 @@ const WordScramble = ({ initialWord, targetWord, onComplete, show }) => {
         height={height}
         numberOfPieces={showCheckmark ? 700 : 0}
       />
-      {show && (<>  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, maxWidth: '100vw', justifyContent: 'center' }}>
-          {initialWord.split('').map((letter, index) => (
-              <div style={TILE_STYLE}>
-                {letter}
-            </div>
-          ))}
-        </div>
-        <input id='hiding-input' style={{ border: 'none', backgroundColor: 'transparent', display: 'none' }} type='text' autoFocus/>
-        <div onClick={() => document.getElementById('hiding-input').focus()} style={{ display: 'flex', gap: 10, justifyContent: 'center', paddingTop: 20 }}>
-          {targetWord.split('').map((letter, index) => (
-            <div key={index} style={EMPTY_TILE_STYLE}>
-              {inputText.split('')[index]}
-            </div>
-          ))}
-        </div>
-        <button onClick={() => setInputText('')}>Reset</button>
-        <button onClick={onComplete}>Skip</button></>)}
+      {show && (<>  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, maxWidth: '100vw', justifyContent: 'center' }}>
+        {initialWord.split('').map((letter, index) => (
+          <div style={TILE_STYLE}>
+            {letter}
+          </div>
+        ))}
+      </div>
+      <BlockInput value={inputText} targetValue={targetWord} onChange={setInputText} />
+      <button onClick={() => setInputText('')}>Reset</button>
+      <button onClick={onComplete}>Skip</button></>)}
     </div>
   );
 };
