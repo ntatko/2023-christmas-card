@@ -80,14 +80,15 @@ const WordScramble = ({ initialWord, targetWord, onComplete, show }) => {
             </div>
           ))}
         </div>
-        <input hidden value={inputText} autoFocus />
-        <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
-          {targetWord.split('').map((letter, index) => (
-            <div key={index} style={EMPTY_TILE_STYLE}>
-              {inputText.split('')[index]}
-            </div>
-          ))}
-        </div>
+        <input style={{ border: 'none', backgroundColor: 'transparent' }} type='text' value={inputText} autoFocus>
+          <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
+            {targetWord.split('').map((letter, index) => (
+              <div key={index} style={EMPTY_TILE_STYLE}>
+                {inputText.split('')[index]}
+              </div>
+            ))}
+          </div>
+        </input>
         <button onClick={() => setInputText('')}>Reset</button>
         <button onClick={onComplete}>Skip</button></>)}
     </div>
