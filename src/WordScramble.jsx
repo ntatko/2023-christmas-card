@@ -5,7 +5,6 @@ import useWindowSize from 'react-use/lib/useWindowSize'
 const TILE_STYLE = {
   padding: '10px',
   margin: '5px',
-  cursor: 'move',
   display: 'flex',
   border: '1px solid #ddd',
   borderRadius: '4px',
@@ -73,15 +72,15 @@ const WordScramble = ({ initialWord, targetWord, onComplete, show }) => {
         height={height}
         numberOfPieces={showCheckmark ? 700 : 0}
       />
-      {show && (<>  <div style={{ display: 'flex', gap: 10 }}>
+      {show && (<>  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, maxWidth: '100vw', justifyContent: 'center' }}>
           {initialWord.split('').map((letter, index) => (
               <div style={TILE_STYLE}>
                 {letter}
             </div>
           ))}
         </div>
-        <input id='hiding-input' style={{ border: 'none', backgroundColor: 'transparent' }} type='text' hidden autoFocus/>
-        <div onClick={() => document.getElementById('hiding-input').focus()} style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
+        <input id='hiding-input' style={{ border: 'none', backgroundColor: 'transparent', display: 'none' }} type='text' autoFocus/>
+        <div onClick={() => document.getElementById('hiding-input').focus()} style={{ display: 'flex', gap: 10, justifyContent: 'center', paddingTop: 20 }}>
           {targetWord.split('').map((letter, index) => (
             <div key={index} style={EMPTY_TILE_STYLE}>
               {inputText.split('')[index]}
