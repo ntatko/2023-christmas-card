@@ -66,11 +66,6 @@ const WordScramble = ({ initialWord, targetWord, onComplete, show }) => {
     }
   }
 
-  const focusDiv = (event) => {
-    event.target.focus();
-  }
-
-
   return (
     <div>
       <Confetti
@@ -85,9 +80,10 @@ const WordScramble = ({ initialWord, targetWord, onComplete, show }) => {
             </div>
           ))}
         </div>
+        <input hidden value={inputText} autoFocus />
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
           {targetWord.split('').map((letter, index) => (
-            <div key={index} onClick={focusDiv} style={EMPTY_TILE_STYLE}>
+            <div key={index} style={EMPTY_TILE_STYLE}>
               {inputText.split('')[index]}
             </div>
           ))}
