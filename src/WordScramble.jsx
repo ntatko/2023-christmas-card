@@ -43,16 +43,9 @@ const BlockInput = ({ value, targetValue, onChange }) => {
   };
 
   const handleChange = (e, index) => {
-    console.log("e", e)
-    const val = e.nativeEvent?.data?.toLowerCase();
-    const isBackspace = e.nativeEvent?.inputType === 'deleteContentBackward' ||
-      e.nativeEvent?.inputType === 'deleteContentForward';
-    if (isBackspace && value.length > 0) {
-      onChange(value.slice(0, -1));
-      if (index > 0) {
-        inputRefs.current[index - 1].current.focus();
-      }
-    } else if (value.length < targetValue.length && val.match(/[a-z]/i) && val.length === 1) {
+    console.log("e", e, e.target.value)
+    const val = e.target.value
+    if (value.length < targetValue.length && val.match(/[a-z]/i) && val.length === 1) {
       handleInputChange(index)
       onChange(value + val);
     }
@@ -70,6 +63,12 @@ const BlockInput = ({ value, targetValue, onChange }) => {
           value={value[index] || ''}
           onChange={(e) => {
             handleChange(e, index);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Backspace' || e.key === 'Delete') {
+              inputRefs.current[index].current.focus();
+              onChange(value.slice(0, -1));
+            }
           }}
         />
       ))}
