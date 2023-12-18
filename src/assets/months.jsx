@@ -7,6 +7,26 @@ import READ_W_ANDREW from './january/read_w_andrew.jpg'
 import SLEEPING from './january/sleeping.jpg'
 import STICKERSON from './january/stickerson.jpg'
 import TUNITY from './january/tunity.jpg'
+import POGRAMMIN from './february/pogrammin.jpg'
+import DRESSER from './february/Dresser.jpg'
+import HIDING from './february/Hiding.jpg'
+import GAZEBO from './february/Gazebo.jpg'
+import BOXDINNER from './february/BoxDinner.jpg'
+import PILLOWHOP from './february/PillowHop.jpg'
+import BUDDLTS from './february/Buddlts.jpg'
+import READING from './february/Reading.jpg'
+import ALTON_ROOM_GIF from './march/alton_room_gif.gif'
+import ALTON_TRAINS from './march/alton_trains.jpg'
+import BABY_BROTHER from './march/baby_brother.jpg'
+import BABY_BROTHER_GIF from './march/baby_brother_gif.gif'
+import COOL_SUNGLASSES from './march/cool_sunglasses.jpg'
+import DUSTY_WITH_THESE_ONES from './march/dusty_with_these_ones.jpg'
+import GARDENING_SEEDS from './march/gardening_seeds.jpg'
+import HOODIES from './march/hoodies.jpg'
+import SPELLING_MAMA from './march/spelling_mama.jpg'
+import TOWELS_HANDSOME from './march/towels_handsome.jpg'
+import VICKI_COOKING from './march/vicki_cooking.jpg'
+import WINNIE_POOH from './march/winnie_pooh.jpg'
 
 const PHOTOS = {
     JANUARY: {
@@ -19,6 +39,30 @@ const PHOTOS = {
         SLEEPING,
         STICKERSON,
         TUNITY,
+    },
+    FEBRUARY: {
+        POGRAMMIN,
+        DRESSER,
+        HIDING,
+        GAZEBO,
+        BOXDINNER,
+        PILLOWHOP,
+        BUDDLTS,
+        READING,
+    },
+    MARCH: {
+        ALTON_ROOM_GIF,
+        ALTON_TRAINS,
+        BABY_BROTHER,
+        BABY_BROTHER_GIF,
+        COOL_SUNGLASSES,
+        DUSTY_WITH_THESE_ONES,
+        GARDENING_SEEDS,
+        HOODIES,
+        SPELLING_MAMA,
+        TOWELS_HANDSOME,
+        VICKI_COOKING,
+        WINNIE_POOH,
     }
 }
 
@@ -60,8 +104,8 @@ const SizedImage = ({ src }) => {
 export default {
     'january': {
         'name': 'January',
-        'word': 'art',
-        'clue': 'rayhbtgbtgbtgbtft',
+        'word': 'discovery',
+        'clue': 'rosyviced',
         'body': () => {
             return (
                 <Body>
@@ -96,29 +140,70 @@ export default {
     },
     'february': {
         'name': 'February',
-        'word': 'crepe',
-        'clue': 'spectre',
+        'word': 'storytime',
+        'clue': 'toysmiter',
         'body': () => {
             return (
-                <div>
-                    <p>February</p>
-                    <p>bath</p>
-                    <p>bat</p>
-                </div>
+                <Body>
+                    <h1>February</h1>
+        
+                    <p>It felt sometimes like Juliet never stopped talking, so we tried to make the most of her neverending streams of chatter and made more efforts to record her funny sayings and quotes.
+                        She discovered the art of flattery with sayings like "Daddy, you're so handsome," during dinner one night.
+                        Some other funny things we enjoyed were when she called things "new-brand" instead of brand-new, and one time when she sat in a puddle and said, "It's very soggy for me. It's very soggy in my lap."
+                    </p>
+                    <SizedImage src={PHOTOS.FEBRUARY.POGRAMMIN} />
+                    <Caption>"I'm pogrammin' I think! It's a meeting, where me headphones?"</Caption>
+                    <SizedImage src={PHOTOS.FEBRUARY.DRESSER} />
+                    <Caption>Juliet loved hide and seek, but still cannot stop herself from popping out as soon as the counter says 10!</Caption>
+                    <SizedImage src={PHOTOS.FEBRUARY.HIDING} />
+                    <Caption>Noah helped Juliet hide, but she just had to stretch her legs 🤣 </Caption>
+                    <SizedImage src={PHOTOS.FEBRUARY.GAZEBO} />
+                    <Caption>Juliet loves to "Run run run to a 'zebo" with Nessie the ladle.</Caption>
+                    <SizedImage src={PHOTOS.FEBRUARY.BOXDINNER} />
+                    <Caption>"And I would eat them with a fox and I would eat them in a box..." <br/>~ Dr. Seuss</Caption>
+                    <SizedImage src={PHOTOS.FEBRUARY.PILLOWHOP} />
+                    <Caption>The amount of bed jumping here makes us glad we donated our bedframe after it caused Juliet's ER trip last summer...</Caption>
+                    <SizedImage src={PHOTOS.FEBRUARY.BUDDLTS} />
+                    <Caption>When the house gets quiet, we automatically assume Juliet is playing in the bathroom sink now.</Caption>
+                    <SizedImage src={PHOTOS.FEBRUARY.READING} />
+                    <Caption>When Juliet reads to us, the books take interesting turns...</Caption>
+                </Body>
             )
         }
     },
     'march': {
         'name': 'March',
-        'word': 'arch',
-        'clue': 'arch',
+        'word': 'chooches',
+        'clue': 'sechocho',
         'body': () => {
             return (
-                <div>
-                    <p>March</p>
-                    <p>arch</p>
-                    <p>arch</p>
-                </div>
+                <Body>
+                    <h1>March</h1>
+                    <SizedImage src={PHOTOS.MARCH.ALTON_ROOM_GIF} />
+                    <Caption>Juliet loves to play in Alton's room, especially when he's not there.</Caption>
+                    <SizedImage src={PHOTOS.MARCH.ALTON_TRAINS} />
+                    <Caption>Juliet loves to play with Alton's trains, especially when he's not there.</Caption>
+                    <SizedImage src={PHOTOS.MARCH.BABY_BROTHER} />
+                    <Caption>Juliet loves to play with her baby brother, especially when he's not there.</Caption>
+                    <SizedImage src={PHOTOS.MARCH.BABY_BROTHER_GIF} />
+                    <Caption>Juliet loves to play with her baby brother, especially when he's not there.</Caption>
+                    <SizedImage src={PHOTOS.MARCH.COOL_SUNGLASSES} />
+                    <Caption>Juliet loves to wear cool sunglasses, especially when she's not there.</Caption>
+                    <SizedImage src={PHOTOS.MARCH.DUSTY_WITH_THESE_ONES} />
+                    <Caption>Juliet loves to wear cool sunglasses, especially when she's not there.</Caption>
+                    <SizedImage src={PHOTOS.MARCH.GARDENING_SEEDS} />
+                    <Caption>Juliet loves to garden, especially when she's not there.</Caption>
+                    <SizedImage src={PHOTOS.MARCH.HOODIES} />
+                    <Caption>Juliet loves to wear hoodies, especially when she's not there.</Caption>
+                    <SizedImage src={PHOTOS.MARCH.SPELLING_MAMA} />
+                    <Caption>Juliet loves to spell, especially when she's not there.</Caption>
+                    <SizedImage src={PHOTOS.MARCH.TOWELS_HANDSOME} />
+                    <Caption>Juliet loves to be handsome, especially when she's not there.</Caption>
+                    <SizedImage src={PHOTOS.MARCH.VICKI_COOKING} />
+                    <Caption>Juliet loves to cook, especially when she's not there.</Caption>
+                    <SizedImage src={PHOTOS.MARCH.WINNIE_POOH} />
+                    <Caption>Juliet loves to read, especially when she's not there.</Caption>
+                </Body>
             )
         }
     },

@@ -41,6 +41,10 @@ function App() {
           }}>{`Go to ${content[nextMonth].name}`}</button>
         </>
       )}
+      <button onDoubleClick={()=> {
+        setCurrentMonth(months[0])
+        localStorage.setItem('currentMonth', months[0])
+      }} style={{ position: 'fixed', bottom: 0, right: 0 }}>Reset Game</button>
     </>
   )
 }
